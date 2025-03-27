@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "156859731443",
+    "project_id": "promonegocios-99b9c",
+    "storage_bucket": "promonegocios-99b9c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:156859731443:android:b1cef138d62c23826ad686",
+        "android_client_info": {
+          "package_name": "com.example.promonegociosguachinango"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXsLhhprW60XQ1m9WHY2OZSHM89OsVDYQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
