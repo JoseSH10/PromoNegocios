@@ -15,7 +15,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.promonegociosguachinango.ui.theme.PromonegociosGuachinangoTheme
+import com.google.firebase.Firebase
 import com.google.firebase.FirebaseApp
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.analytics
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.GeoPoint
@@ -23,6 +26,16 @@ import com.google.firebase.firestore.GeoPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        FirebaseApp.initializeApp(this) // Initialize Firebase
+
+        // Obtain the FirebaseAnalytics instance.
+        val analytics: FirebaseAnalytics = FirebaseAnalytics.getInstance(this)
+        val bundle = Bundle()
+        bundle.putString("message", "Integración de Firebase completa")
+        analytics.logEvent("InitScreeen", bundle)
+
+
+
 
         //  Inicializar Firebase ANTES de cualquier otra operación
         FirebaseApp.initializeApp(this)
