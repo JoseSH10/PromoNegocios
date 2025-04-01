@@ -13,11 +13,21 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.promonegociosguachinango.ui.theme.PromonegociosGuachinangoTheme
 import com.google.firebase.FirebaseApp
+import com.google.firebase.analytics.FirebaseAnalytics
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         FirebaseApp.initializeApp(this) // Initialize Firebase
+
+        // Obtain the FirebaseAnalytics instance.
+        val analytics: FirebaseAnalytics = FirebaseAnalytics.getInstance(this)
+        val bundle = Bundle()
+        bundle.putString("message", "Integración de Firebase completa")
+        analytics.logEvent("InitScreeen", bundle)
+
+
+
         enableEdgeToEdge()
         setContent {
             PromonegociosGuachinangoTheme {
@@ -30,6 +40,7 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
 }
 
 @Composable
@@ -45,5 +56,6 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 fun GreetingPreview() {
     PromonegociosGuachinangoTheme {
         Greeting("Android")
+
     }
 }
