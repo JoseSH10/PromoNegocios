@@ -1,6 +1,9 @@
 package com.example.promonegociosguachinango
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -13,20 +16,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.promonegociosguachinango.ui.theme.PromonegociosGuachinangoTheme
 import com.google.firebase.FirebaseApp
+import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.FirebaseFirestore
-import android.util.Log
-
+import com.google.firebase.firestore.GeoPoint
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        agregarNegocio()
-        obtenerNegocios()
-        actualizarNegocio("ID_DEL_NEGOCIO", "Nuevo Nombre")
-        eliminarNegocio("ID_DEL_NEGOCIO")
 
-        FirebaseApp.initializeApp(this) // Initialize Firebase
+        //  Inicializar Firebase ANTES de cualquier otra operación
+        FirebaseApp.initializeApp(this)
         val db = FirebaseFirestore.getInstance()
+
         enableEdgeToEdge()
         setContent {
             PromonegociosGuachinangoTheme {
@@ -38,46 +39,71 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+
+        //  Llamar funciones en el orden correcto
+        agregarNegocio(this)
+        escucharCambiosNegocios()
     }
 }
-fun agregarNegocio() {
+// Función para agregar un negocio
+fun agregarNegocio(context: Context) {
     val db = FirebaseFirestore.getInstance()
 
-    val negocio = hashMapOf(
-        "nombre" to "Tienda Ejemplo",
-        "descripcion" to "Venta de productos electrónicos",
-        //"direccion" to "Calle 123, Guachinango",
-        "telefono" to "3312345678",
-        "categoriaId" to "restaurantes",
-        "coordenadas" to hashMapOf(
-            "latitud" to 20.758,
-            "longitud" to -104.243
-        )
+    val negocios = hashMapOf(
+        "categoriaId" to "ID_CATEGORIA",
+        "coordenadas" to GeoPoint(20.666, -103.350),
+        "descripcion" to "Descripción del negocio",
+        "estado" to "Activo",
+        "imagen" to "https://ejemplo.com/imagen.jpg",
+        "negocioID" to "ID_NEGOCIO",
+        "nombre" to "cafeli",
+        "propietarioId" to "ID_PROPIETARIO",
+        "telefono" to "1234567468",
+        /*"ubicacion" to hashMapOf(
+            "calle" to "Av. Principal",
+            "numero" to "123",
+            "colonia" to "Centro",
+            "ciudad" to "Guadalajara",
+            "codigoPostal" to "44100"
+        ),*/
+        "valoraciones" to listOf(5, 4, 3)
     )
 
-    db.collection("negocios")
-        .add(negocio)
-        .addOnSuccessListener { documentReference ->
-            Log.d("Firestore", "Negocio agregado con ID: ${documentReference.id}")
+    Log.d("Firestore", "Intentando agregar negocio...") // Mensaje de depuración
+
+    db.collection("negocios").document("ID_NEGOCIO")
+        .set(negocios)
+        .addOnSuccessListener {
+            Log.d("Firestore", "Negocio agregado con éxito") // Verifica si aparece este log en Logcat
+            Toast.makeText(context, "Negocio agregado correctamente", Toast.LENGTH_SHORT).show()
         }
         .addOnFailureListener { e ->
-            Log.e("Firestore", "Error al agregar negocio", e)
+            Log.e("Firestore", "Error al agregar negocio", e) //  Si hay un error, aparecerá aquí
         }
 }
-fun obtenerNegocios() {
+
+
+// Función para escuchar cambios en la colección "negocios"
+fun escucharCambiosNegocios() {
     val db = FirebaseFirestore.getInstance()
 
-    db.collection("negocios")
-        .get()
-        .addOnSuccessListener { documents ->
-            for (document in documents) {
-                Log.d("Firestore", "ID: ${document.id}, Datos: ${document.data}")
+    db.collection("negocios").addSnapshotListener { snapshots, e ->
+        if (e != null) {
+            Log.e("Firestore", "Error al escuchar cambios", e)
+            return@addSnapshotListener
+        }
+
+        for (doc in snapshots!!.documentChanges) {
+            when (doc.type) {
+                DocumentChange.Type.ADDED -> Log.d("Firestore", "Nuevo negocio: ${doc.document.data}")
+                DocumentChange.Type.MODIFIED -> Log.d("Firestore", "Negocio actualizado: ${doc.document.data}")
+                DocumentChange.Type.REMOVED -> Log.d("Firestore", "Negocio eliminado: ${doc.document.data}")
             }
         }
-        .addOnFailureListener { e ->
-            Log.e("Firestore", "Error al obtener negocios", e)
-        }
+    }
 }
+
+// Función para actualizar un negocio
 fun actualizarNegocio(negocioID: String, nuevoNombre: String) {
     val db = FirebaseFirestore.getInstance()
 
@@ -90,6 +116,8 @@ fun actualizarNegocio(negocioID: String, nuevoNombre: String) {
             Log.e("Firestore", "Error al actualizar", e)
         }
 }
+
+// Función para eliminar un negocio
 fun eliminarNegocio(negocioID: String) {
     val db = FirebaseFirestore.getInstance()
 
@@ -103,6 +131,20 @@ fun eliminarNegocio(negocioID: String) {
         }
 }
 
+// Función para obtener negocios manualmente
+fun obtenerNegocios() {
+    val db = FirebaseFirestore.getInstance()
+
+    db.collection("negocios").get()
+        .addOnSuccessListener { documents ->
+            for (document in documents) {
+                Log.d("Firestore", "ID: ${document.id}, Datos: ${document.data}")
+            }
+        }
+        .addOnFailureListener { e ->
+            Log.e("Firestore", "Error al obtener negocios", e)
+        }
+}
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
