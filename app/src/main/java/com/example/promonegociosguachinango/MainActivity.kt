@@ -42,6 +42,7 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
 }
 
 @Composable
@@ -57,5 +58,6 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 fun GreetingPreview() {
     PromonegociosGuachinangoTheme {
         Greeting("Android")
+
     }
 }
