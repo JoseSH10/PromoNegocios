@@ -22,10 +22,13 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         FirebaseApp.initializeApp(this) // Initialize Firebase
 
+        // Obtain the FirebaseAnalytics instance.
         val analytics: FirebaseAnalytics = FirebaseAnalytics.getInstance(this)
         val bundle = Bundle()
-        bundle.putString("message", "Integración de firebase completa")
-        analytics.logEvent("init", bundle)
+        bundle.putString("message", "Integración de Firebase completa")
+        analytics.logEvent("InitScreeen", bundle)
+
+
 
         enableEdgeToEdge()
         setContent {
