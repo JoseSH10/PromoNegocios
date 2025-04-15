@@ -50,6 +50,11 @@
             android:label="@string/title_activity_admin"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
         <activity
+            android:name=".AdminActivity"
+            android:exported="false"
+            android:label="@string/title_activity_admin"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
+        <activity
             android:name=".HomeActivity"
             android:exported="false"
             android:label="@string/title_activity_home"
