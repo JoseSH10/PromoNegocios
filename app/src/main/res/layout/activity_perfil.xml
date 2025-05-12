@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1B1037"
+    tools:context=".PerfilActivity">
+
+    <TextView
+        android:id="@+id/tvTituloPerfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tu Perfil"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="24dp"/>
+
+    <ImageView
+        android:id="@+id/imgPerfil"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@android:drawable/sym_def_app_icon"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@id/tvTituloPerfil"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnEditar"
+        app:layout_constraintHorizontal_bias="0.4"/>
+
+    <ImageButton
+        android:id="@+id/btnEditar"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:background="@android:color/transparent"
+        android:src="@android:drawable/ic_menu_edit"
+        app:layout_constraintTop_toTopOf="@id/imgPerfil"
+        app:layout_constraintBottom_toBottomOf="@id/imgPerfil"
+        app:layout_constraintStart_toEndOf="@id/imgPerfil"
+        android:layout_marginStart="8dp"/>
+
+    <TextView
+        android:id="@+id/tvNombreUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Alma Marcela Silva"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/imgPerfil"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"/>
+
+    <TextView
+        android:id="@+id/tvCorreoLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Correo"
+        android:textColor="#FFFFFF"
+        app:layout_constraintTop_toBottomOf="@id/tvNombreUsuario"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="32dp"/>
+
+    <TextView
+        android:id="@+id/tvCorreo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="almamarcelasilva@gmail.com"
+        android:textColor="#CCCCCC"
+        app:layout_constraintTop_toBottomOf="@id/tvCorreoLabel"
+        app:layout_constraintStart_toStartOf="@id/tvCorreoLabel"
+        android:layout_marginTop="4dp"/>
+
+    <TextView
+        android:id="@+id/tvContrasenaLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contraseña"
+        android:textColor="#FFFFFF"
+        app:layout_constraintTop_toBottomOf="@id/tvCorreo"
+        app:layout_constraintStart_toStartOf="@id/tvCorreo"
+        android:layout_marginTop="16dp"/>
+
+    <LinearLayout
+        android:id="@+id/passwordLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/tvContrasenaLabel"
+        app:layout_constraintStart_toStartOf="@id/tvContrasenaLabel"
+        android:layout_marginTop="4dp">
+
+        <TextView
+            android:id="@+id/tvContrasena"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="********"
+            android:textColor="#CCCCCC"/>
+
+        <ImageView
+            android:id="@+id/ivVerContrasena"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@android:drawable/ic_menu_view"
+            android:layout_marginStart="8dp"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="#CCCCCC"
+        app:layout_constraintTop_toBottomOf="@id/passwordLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="24dp"/>
+
+    <TextView
+        android:id="@+id/tvTuNegocio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tu Negocio"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/passwordLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="32dp"/>
+
+    <Button
+        android:id="@+id/btnAdministrarNegocio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Administrar Negocio"
+        android:backgroundTint="#5F52A0"
+        android:textColor="#FFFFFF"
+        app:layout_constraintTop_toBottomOf="@id/tvTuNegocio"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"/>
+
+    <Button
+        android:id="@+id/btnRegistrarNegocio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Registrar Negocio"
+        android:backgroundTint="#5F52A0"
+        android:textColor="#FFFFFF"
+        app:layout_constraintTop_toBottomOf="@id/btnAdministrarNegocio"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="12dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

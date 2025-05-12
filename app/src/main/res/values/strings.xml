@@ -6,4 +6,12 @@
     <string name="title_activity_login_screen">LoginScreen</string>
     <string name="title_activity_home">HomeActivity</string>
     <string name="title_activity_admin">AdminActivity</string>
+    <string name="title_activity_negocio">Negocio</string>
+    <string name="title_activity_negocio_adapter">NegocioAdapter</string>
+    <string name="title_activity_registrar_negocio">activity_registrar_negocio</string>
+    <string name="title_activity_search">SearchActivity</string>
+    <string name="title_activity_favorites">FavoritesActivity</string>
+    <string name="title_activity_map">MapActivity</string>
+    <string name="title_activity_profile">ProfileActivity</string>
+    <string name="title_activity_administrar_negocio">AdministrarNegocioActivity</string>
 </resources>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="160dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:elevation="4dp"
+    android:foreground="?android:attr/selectableItemBackground">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imgNegocio"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/txtNombreNegocio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nombre del Negocio"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:paddingTop="4dp"/>
+
+        <TextView
+            android:id="@+id/txtDescripcionNegocio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Descripción breve"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

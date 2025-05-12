@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.promonegociosguachinango">
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -14,7 +15,37 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
         <activity
-            android:name=".AdminActivity"
+            android:name=".AdministrarNegocioActivity"
+            android:exported="false"
+            android:label="@string/title_activity_administrar_negocio"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
+        <activity
+            android:name=".PerfilActivity"
+            android:exported="false"
+            android:label="@string/title_activity_profile"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
+        <activity
+            android:name=".MapActivity"
+            android:exported="false"
+            android:label="@string/title_activity_map"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
+        <activity
+            android:name=".FavoritesActivity"
+            android:exported="false"
+            android:label="@string/title_activity_favorites"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
+        <activity
+            android:name=".SearchActivity"
+            android:exported="false"
+            android:label="@string/title_activity_search"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
+        <activity
+            android:name=".RegistrarNegocioActivity"
+            android:exported="false"
+            android:label="@string/title_activity_registrar_negocio"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
+        <activity
+            android:name=".AdminNegociosActivity"
             android:exported="false"
             android:label="@string/title_activity_admin"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />

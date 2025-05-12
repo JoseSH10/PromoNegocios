@@ -46,7 +46,7 @@ class LoginActivity : AppCompatActivity() {
                                             Toast.makeText(this, "Bienvenido", Toast.LENGTH_SHORT).show()
 
                                             if (rol == "admin") {
-                                                startActivity(Intent(this, AdminActivity::class.java))
+                                                startActivity(Intent(this, AdminNegociosActivity::class.java))
                                             } else {
                                                 startActivity(Intent(this, HomeActivity::class.java))
                                             }
