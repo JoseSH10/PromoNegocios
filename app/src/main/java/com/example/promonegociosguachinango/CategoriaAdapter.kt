@@ -47,7 +47,7 @@ class CategoriaAdapter(
             tituloCategoria.text = categoria.nombre
             // Actualiza los datos del adaptador de negocios interno
             // Pasa la lista de negocios específica para esta categoría
-            negocioAdapter.actualizarDatos(categoria.negocios)
+            negocioAdapter.actualizarLista(categoria.negocios)
         }
     }
 }

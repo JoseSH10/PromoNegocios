@@ -9,6 +9,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import android.util.Log // Importa la clase Log
+import android.view.View
+import android.widget.FrameLayout
 
 class HomeActivity : AppCompatActivity() {
 
@@ -34,14 +36,22 @@ class HomeActivity : AppCompatActivity() {
         // Bottom navigation opcional
         val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottomNavigation)
         bottomNavigation.setOnItemSelectedListener {
+            val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewCategorias)
+            val contenedorFragmentos = findViewById<FrameLayout>(R.id.contenedorFragmentos)
             when (it.itemId) {
                 R.id.nav_home -> {
-                    // Ya estás en Home, no haces nada o recargas si es necesario
+                    recyclerView.visibility = View.VISIBLE
+                    contenedorFragmentos.visibility = View.GONE
+                    supportFragmentManager.popBackStack() // Regresa si hay fragmento
                     true
                 }
                 R.id.nav_search -> {
-                    startActivity(Intent(this, SearchActivity::class.java))
-                    // Opcional: finish() si no quieres volver a Home con el botón atrás
+                    recyclerView.visibility = View.GONE
+                    contenedorFragmentos.visibility = View.VISIBLE
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.contenedorFragmentos, BuscarFragment())
+                        .addToBackStack(null)
+                        .commit()
                     true
                 }
                 R.id.nav_favorites -> {
